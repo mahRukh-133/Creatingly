@@ -25,4 +25,31 @@ describe('Artboard - Drag & Drop', () => {
     ArtboardPage.dragShapeToArtboard('Circle');
     ArtboardPage.getArtboard().find('.element').should('have.length.gte', 2);
   });
+
+  it('TC_CHART_001 - Drag Chart element inside stack container', () => {
+    ArtboardPage.dragElementToContainer('Chart', 'StackContainer');
+    ArtboardPage.getContainer('StackContainer').find('.chart-element').should('exist');
+  });
+
+  it('TC_CHART_002 - Center justify content and container', () => {
+    ArtboardPage.centerJustifyContainer('StackContainer');
+    ArtboardPage.getContainer('StackContainer').should('have.class', 'center-justified');
+    ArtboardPage.getContainer('StackContainer').find('.chart-element').should('have.class', 'center-justified');
+  });
+
+  it('TC_CHART_003 - Resize Chart element to fit container', () => {
+    ArtboardPage.resizeElementToFitContainer('Chart', 'StackContainer');
+    ArtboardPage.getContainer('StackContainer').find('.chart-element').should('have.css', 'width').and('eq', ArtboardPage.getContainerWidth('StackContainer'));
+  });
+
+  it('TC_CHART_004 - Negative: Drop Chart outside valid area', () => {
+    ArtboardPage.dragElementToInvalidArea('Chart');
+    ArtboardPage.getArtboard().find('.chart-element').should('not.exist');
+  });
+
+  it('TC_CHART_005 - Negative: Resize Chart beyond container limits', () => {
+    ArtboardPage.dragElementToContainer('Chart', 'StackContainer');
+    ArtboardPage.resizeElementBeyondContainer('Chart', 'StackContainer');
+    ArtboardPage.getContainer('StackContainer').find('.chart-element').should('have.css', 'width').and('not.gt', ArtboardPage.getContainerWidth('StackContainer'));
+  });
 });
