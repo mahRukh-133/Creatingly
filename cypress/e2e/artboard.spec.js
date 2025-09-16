@@ -4,6 +4,7 @@ describe('Artboard - Drag & Drop', () => {
 
   beforeEach(() => {
     ArtboardPage.visit();
+    cy.wait(3000)
   });
 
   it('TC_ART_001 - Drag shape to artboard', () => {
