@@ -1,68 +1,48 @@
-Automation Testing – Drag and Drop Project
-Project Overview
 
-This project focuses on automating tests for the drag-and-drop functionality inside Creatingly’s Design Studio. The goal is to demonstrate the testing process, write clear test cases, and implement automation using Cypress with the Page Object Model (POM).
+# Creatingly Drag-and-Drop Automation (Cypress)
 
-Key Scenarios Tested
+## What is this?
+This is my automation project for Creatingly’s Design Studio. I wrote Cypress tests to check the drag-and-drop features, using the Page Object Model (POM) to keep things clean and easy to update.
 
-(Optional) Login with credentials – skipped because of captcha, explained below
+## What did I test?
+- (Login is optional, so I skipped it because of captcha)
+- Add an Artboard
+- Drag a Chart into a stack container
+- Center the content and container
+- Resize the Chart to fit the container
+- Negative tests: Try to drop or resize in ways that shouldn’t work
 
-Drop an Artboard
+## Why did I skip login?
+The login page uses Google reCAPTCHA, which blocks automation. In real projects, teams usually turn off captcha for test environments or use API login. Since login is optional, I started the tests right in the Design Studio.
 
-Drop a Chart element inside a stack container
+## How did I write the tests?
+- Used Cypress with the Page Object Model (POM)
+- Wrote both positive and negative test cases
+- Kept code organized and easy to read
+- Made sure to check UI, usability, and compatibility
 
-Center align content inside the container
-
-Resize the Chart element to fit the container
-
-Login & Captcha
-
-The login page includes Google reCAPTCHA, which is designed to block automated scripts. Since automation tools cannot solve captchas reliably, this step was not automated.
-
-In real QA projects, teams usually handle this by disabling captcha in test environments or using API login. Because login is marked as optional, the tests start directly in the Design Studio to stay focused on the drag-and-drop requirements.
-
-Approach & Best Practices
-
-Cypress with Page Object Model for maintainable and reusable test code
-
-Covered functional, UI, usability, performance, and compatibility aspects
-
-Included both positive and negative test scenarios where possible
-
-Clear structure with separate page objects for selectors and actions
-
-How to Run Tests (Cloud Instance)
-
-1. Open the cloud instance and log in:
+## How to run the tests (on the cloud instance)
+1. Log in to the cloud instance:
    - URL: https://dev-run-tests-7c58559fdc.platform.creatingly.com
-   - Credentials: Provided in the assignment brief
-
-2. In the instance terminal, clone this repo and run tests:
-
+   - Use the credentials from the assignment
+2. In the terminal, clone this repo and run:
    ```bash
    git clone https://github.com/mahRukh-133/Creatingly.git
    cd Creatingly
    npm ci --no-audit --no-fund
    npm run test:e2e -- --config baseUrl=https://stg.platform.creatingly.com/apps/
    ```
-
-3. To run a specific spec (example):
-
+3. To run a specific test file:
    ```bash
-   npx cypress run --spec "cypress/e2e/stack_chart.spec.js" --browser chrome --config baseUrl=https://stg.platform.creatingly.com/apps/
+   npx cypress run --spec "cypress/e2e/artboard.cy.js" --browser chrome --config baseUrl=https://stg.platform.creatingly.com/apps/
    ```
 
-Notes
+## Notes
+- Tests run against https://stg.platform.creatingly.com/apps/
+- The cloud instance is just for running tests, not the actual app
 
-- Tests target the staging app at https://stg.platform.creatingly.com/apps/.
-- The cloud instance is only the environment to run the tests, not the app under test.
-
-Deliverables
-
-Cypress automation tests organized with POM
-
-README documentation
-
-Test cases covering drag-and-drop flows
-
-Presentation-ready test process overview
+## What’s included?
+- Cypress tests using POM
+- This README
+- Test cases for all main drag-and-drop flows
+- A simple process you can follow or present
