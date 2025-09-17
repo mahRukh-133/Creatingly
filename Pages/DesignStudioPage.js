@@ -1,4 +1,15 @@
 class DesignStudioPage {
+  openElementsTab() {
+    cy.contains('span.modeName', 'Elements').click();
+  }
+
+  dragContainerToArtboard() {
+    cy.get('div[data-testid="Container"]')
+      .trigger('mousedown', { which: 1 });
+    this.getArtboard()
+      .trigger('mousemove')
+      .trigger('mouseup', { force: true });
+  }
   visit() {
   cy.visit('/', { timeout: 120000 }); // 2 minutes timeout for page load
   }
@@ -18,10 +29,23 @@ class DesignStudioPage {
     return cy.get('.artboard-canvas'); // adjust selector if needed
   }
 
-  // Drag Chart element from palette to stack container
+
+  // Drag Chart element from element list to stack container
   dragChartToStackContainer() {
-    cy.get('[data-testid="chart-palette-item"]').trigger('mousedown', { which: 1 });
-    cy.get('.stack-container').trigger('mousemove').trigger('mouseup', { force: true });
+    cy.get('div[data-testid="Chart"]').scrollIntoView();
+    cy.get('div[data-testid="Chart"]').trigger('mousedown', { which: 1 });
+    this.getStackContainer()
+      .trigger('mousemove')
+      .trigger('mouseup', { force: true });
+  }
+
+  // Example: Drag Bar Chart type to stack container
+  dragBarChartToStackContainer() {
+    cy.get('div[data-testid="Bar Chart"]').scrollIntoView();
+    cy.get('div[data-testid="Bar Chart"]').trigger('mousedown', { which: 1 });
+    this.getStackContainer()
+      .trigger('mousemove')
+      .trigger('mouseup', { force: true });
   }
 
   // Get stack container

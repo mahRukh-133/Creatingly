@@ -16,7 +16,17 @@ describe('Artboard - Drag & Drop', () => {
     DesignStudioPage.getArtboard().should('exist');
   });
 
+
+  it('TC_CONTAINER_001 - Add Container to Artboard', () => {
+    DesignStudioPage.openElementsTab();
+    DesignStudioPage.dragContainerToArtboard();
+    DesignStudioPage.getArtboard().find('.container-element, .stack-container').should('exist'); // Adjust selector as needed
+  });
+
   it('TC_CHART_001 - Drag Chart element inside stack container', () => {
+    // Ensure container is present before adding chart
+    DesignStudioPage.openElementsTab();
+    DesignStudioPage.dragContainerToArtboard();
     DesignStudioPage.dragChartToStackContainer();
     DesignStudioPage.getStackContainer().find('.chart-element').should('exist');
   });
