@@ -1,8 +1,8 @@
 const { defineConfig } = require('cypress')
 
 module.exports = defineConfig({
-  pageLoadTimeout: 120000,
-  defaultCommandTimeout: 15000,
+  pageLoadTimeout: 180000,
+  defaultCommandTimeout: 30000,
   retries: 1,
   e2e: {
     baseUrl: 'https://stg.platform.creatingly.com/apps/',

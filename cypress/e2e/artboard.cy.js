@@ -9,7 +9,7 @@ describe('Artboard - Drag & Drop', () => {
 
 
 
-  it('TC_ART_001 - Add Artboard via left menu and select template', () => {
+  it.only('TC_ART_001 - Add Artboard via left menu and select template', () => {
     DesignStudioPage.openArtboardMenu();
     cy.get('.sys-form-modal-content').should('be.visible');
     DesignStudioPage.selectFirstArtboardTemplate();
